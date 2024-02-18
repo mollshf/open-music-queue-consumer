@@ -30,7 +30,19 @@ class SongsPlaylistService {
 
     const result = await this.pool.query(query);
 
-    return result.rows;
+    if (result.rows.length > 0) {
+      const data = result.rows[0];
+      return {
+        playlist: {
+          id: data.id,
+          name: data.name,
+          username: data.username,
+          songs: data.songs,
+        },
+      };
+    }
+
+    return null;
   }
 }
 
