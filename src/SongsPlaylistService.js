@@ -10,7 +10,6 @@ class SongsPlaylistService {
         SELECT 
           playlists.id AS id, 
           playlists.name AS name, 
-          users.username AS username, 
           json_agg(json_build_object('id', songs.id, 'title', songs.title, 'performer', songs.performer)) AS songs 
         FROM 
           playlists 
@@ -36,7 +35,6 @@ class SongsPlaylistService {
         playlist: {
           id: data.id,
           name: data.name,
-          username: data.username,
           songs: data.songs,
         },
       };
